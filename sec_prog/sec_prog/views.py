@@ -19,7 +19,7 @@ def my_view(request):
 
 @login_required(login_url='/')
 def shop(request):
-    return render(request, 'shop.html')
+    return render(request, 'shop.html') 
 
 @login_required
 def logout_view(request):
