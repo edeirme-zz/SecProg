@@ -1,0 +1,25 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html lang="en">
+<head>
+{% load staticfiles %}
+<link rel="stylesheet" href=" {% static 'css/mystyle.css' %}" type="text/css" />
+
+</head>
+<body>
+    <h1 class="basemenu">Buy my Products!</h1>
+
+    {% if user.is_authenticated %}
+    <div class="base_user">
+        <p class="user_name">Welcome, {{ user.username }}. </p>
+        <a href="http://127.0.0.1:8000/logout" class="logout">logout</a>
+        </div>
+    {% endif %}
+
+    <hr>
+    {% block main %} {%endblock%}
+    
+    
+</body>
+</html>
