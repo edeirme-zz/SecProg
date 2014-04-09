@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.views import login,logout
 from django.contrib import admin
-from views import shop
+from views import shop, build_blog_movie
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -24,4 +24,7 @@ urlpatterns = patterns('',
         view=shop,
 
         name='shop'),
+    url(regex=r'^build_blog_movie/',
+        view="build_blog_movie",
+        name='build_blog_movie')
 )

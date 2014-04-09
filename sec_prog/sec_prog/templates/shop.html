@@ -1,7 +1,48 @@
 {% extends "base.html" %}
 {%block main %}
-{% csrf_token %}
-<p>GOUZOU</p>
+
+        <div id="output">lala</div>
+<div class="master clearfix">
+<div class="shop_area clearfix">
+    <p class="product_list"> Product List</p>
+{% for i in products %}
+    <form onsubmit="return false;" id="test">
+        {% csrf_token %}
+        <div class="product">
+            <p class="product_name" value="{{ i.product_name }}">{{ i.product_name }}  </p>
+            <p class="product_price"> {{ i.price }}</p>
+            <input type="text" id="blogTitle" /> <br />
+            <button class="buy_button" onclick="CreateBlog()">Add to cart</button>
+        </div>
+    </form>
+    <script type="text/javascript">
+    function CreateBlog(){
+        $('.ajaxProgress').show();
+        $.ajax({
+            type: "POST",
+            url: "/build_blog_movie",
+            dataType: "json",
+            async: true,
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                blogTitle: $('#blogTitle').val(),
+            },
+            success: function () {
+                alert('lala');
+                $('#output').html("<h2>lalaaaa</h2>");
+                $('.ajaxProgress').hide();
+            }
+        });
+    }
+</script>
+{% endfor %}
+    </div>
+        <div class="cart">
+            <div class="cart_content">Lalala</div>
+            <button class="checkout_button">Checkout</button>
+        </div>
+   </div>
+
 
 {% endblock %}
 

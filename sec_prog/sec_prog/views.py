@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
+from django.template import RequestContext
 from django.contrib.auth import authenticate, login, logout
-from django.core.context_processors import csrf
-from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
-
+from shop.models import Shop
+from django.http import HttpResponse
+import json
 
 def my_view(request):
     username = request.POST['username']
@@ -19,7 +20,24 @@ def my_view(request):
 
 @login_required(login_url='/')
 def shop(request):
-    return render(request, 'shop.html') 
+    products = Shop.objects.all()
+
+    return render_to_response('shop.html', {'products': products}, context_instance=RequestContext(request))
+
+
+def build_blog_movie(request):
+    test = request.POST.get("blogTitle", "")
+    response_data = {}
+    try:
+        response_data['result'] = 'Writing the blog was a success'
+        response_data['message'] = test
+
+    except:
+        response_data['result'] = 'Ohno;!'
+        response_data['message'] = 'Tmadml'
+
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
 
 @login_required
 def logout_view(request):
