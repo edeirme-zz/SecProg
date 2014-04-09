@@ -56,11 +56,18 @@
 }
 .cart{
     position:relative;
-    width:10%;
+    width:11%;
     height:330px;
     float:left;
     left: 20%;
 
+}
+.wrapper{
+     height:300px;
+    text-align:center;
+    border: 5px solid red;
+    overflow:auto;
+    width: 120%;
 
 }
 .master{
@@ -68,11 +75,29 @@
 
 }
 .cart_content{
-    height:300px;
+    height:30px;
     text-align:center;
     border: 5px solid red;
 }
 .checkout_button{
     border: 5px solid red;
     margin:0 auto;
+}
+.product_cart{
+    position:relative;
+    float:left;
+    padding:0px 0px 0px 10px;
+    margin:0;
+
+}
+.wrap_it{
+    position:relative;
+}
+.ui-popup.ui-content, .ui-popup .ui-content {
+    float: left;
+    display: block;
+    overflow: visible;
+    position: relative;
+    width: 200px;
+    margin-top: 0em;
 }

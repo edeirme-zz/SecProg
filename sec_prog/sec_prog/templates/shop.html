@@ -11,38 +11,49 @@
         <div class="product">
             <p class="product_name" value="{{ i.product_name }}">{{ i.product_name }}  </p>
             <p class="product_price"> {{ i.price }}</p>
-            <input type="text" id="blogTitle" /> <br />
-            <button class="buy_button" onclick="CreateBlog()">Add to cart</button>
+
+            <input type="button" onclick="add2cart('{{i.product_name}}','{{i.price}}')" class="buy_button" id="{{ i.product_name }}" value="Add to Cart" >
         </div>
     </form>
-    <script type="text/javascript">
+{% endfor %}
+    </div>
+        <div class="cart">
+            <div class="wrapper">
+            <div class="cart_content ui-content">Cart</div>
+            </div>
+            <a href="#myPopup" data-rel="popup" class="checkout_button">Checkout</a>
+            <div class="ui-content ui-overlay-shadow" id="myPopup" data-role="popup" data-position-to="window" data-overlay-theme="a"></div>
+        </div>
+   </div>
+
+
+<script type="text/javascript">
+function add2cart(product_name,product_price){
+
+    $(".cart_content:last").after("<div class='wrap_it clearfix'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
+    $("#myPopup").append("<div class='wrap_it clearfix'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
+
+}
     function CreateBlog(){
         $('.ajaxProgress').show();
         $.ajax({
             type: "POST",
-            url: "/build_blog_movie",
+            url: "/build_blog_movie/",
             dataType: "json",
             async: true,
             data: {
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 blogTitle: $('#blogTitle').val(),
             },
-            success: function () {
-                alert('lala');
-                $('#output').html("<h2>lalaaaa</h2>");
+            success: function (json) {
+
+                $('#output').html(json.message);
                 $('.ajaxProgress').hide();
             }
         });
     }
+
+
 </script>
-{% endfor %}
-    </div>
-        <div class="cart">
-            <div class="cart_content">Lalala</div>
-            <button class="checkout_button">Checkout</button>
-        </div>
-   </div>
-
-
 {% endblock %}
 

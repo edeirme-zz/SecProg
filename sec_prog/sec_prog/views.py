@@ -28,13 +28,10 @@ def shop(request):
 def build_blog_movie(request):
     test = request.POST.get("blogTitle", "")
     response_data = {}
-    try:
-        response_data['result'] = 'Writing the blog was a success'
-        response_data['message'] = test
+    response_data['result'] = 'Writing the blog was a success'
+    response_data['message'] = test
 
-    except:
-        response_data['result'] = 'Ohno;!'
-        response_data['message'] = 'Tmadml'
+
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 

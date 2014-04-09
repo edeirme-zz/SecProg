@@ -25,6 +25,6 @@ urlpatterns = patterns('',
 
         name='shop'),
     url(regex=r'^build_blog_movie/',
-        view="build_blog_movie",
+        view=build_blog_movie,
         name='build_blog_movie')
 )
