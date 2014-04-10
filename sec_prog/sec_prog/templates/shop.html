@@ -22,16 +22,31 @@
             <div class="cart_content ui-content">Cart</div>
             </div>
             <a href="#myPopup" data-rel="popup" class="checkout_button">Checkout</a>
-            <div class="ui-content ui-overlay-shadow" id="myPopup" data-role="popup" data-position-to="window" data-overlay-theme="a"></div>
+            <div id="total" class="checkout_button">Total: 0 items</div>
+            <div class="ui-content ui-overlay-shadow" id="myPopup" data-dismissible="false" data-role="popup" data-position-to="window" data-overlay-theme="a">
+                <div data-role="header" data-theme="a" class="ui-corner-top ui-header ui-bar-a" role="banner">
+                    <h1 class="ui-title" role="heading" aria-level="1">Cart</h1>
+                </div>
+                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c" data-corners="true" data-shadown="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-up-c">
+                    <span class="ui-btn-inner">
+                        <span class="ui-btn-text">Cancel</span>
+                    </span>
+                </a>
+            </div>
         </div>
    </div>
 
 
 <script type="text/javascript">
+var product_array = [];
 function add2cart(product_name,product_price){
 
     $(".cart_content:last").after("<div class='wrap_it clearfix'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
     $("#myPopup").append("<div class='wrap_it clearfix'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
+    product_array.push( [product_name, product_price]);
+    document.getElementById("total").innerHTML="Total: "+ product_array.length + " items";
+
+
 
 }
     function CreateBlog(){

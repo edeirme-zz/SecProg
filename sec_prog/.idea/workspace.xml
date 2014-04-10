@@ -75,10 +75,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sec_prog/templates/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="68" selection-start="249" selection-end="249" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="525">
+            <state line="15" column="31" selection-start="560" selection-end="560" vertical-scroll-proportion="0.36824876" vertical-offset="0" max-vertical-offset="611">
               <folding />
             </state>
           </provider>
@@ -87,16 +87,16 @@
       <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sec_prog/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="44" selection-start="929" selection-end="929" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
+            <state line="28" column="44" selection-start="929" selection-end="929" vertical-scroll-proportion="0.0" vertical-offset="420" max-vertical-offset="690">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shop.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="shop.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sec_prog/templates/shop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="52" selection-start="945" selection-end="945" vertical-scroll-proportion="0.43311036" vertical-offset="101" max-vertical-offset="975">
+            <state line="31" column="56" selection-start="1698" selection-end="1698" vertical-scroll-proportion="-15.208333" vertical-offset="100" max-vertical-offset="1200">
               <folding />
             </state>
           </provider>
@@ -105,7 +105,7 @@
       <file leaf-file-name="mystyle.css" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sec_prog/static/css/mystyle.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="97" column="19" selection-start="1386" selection-end="1386" vertical-scroll-proportion="-17.8" vertical-offset="1010" max-vertical-offset="1620">
+            <state line="97" column="19" selection-start="1386" selection-end="1386" vertical-scroll-proportion="0.0" vertical-offset="1010" max-vertical-offset="1620">
               <folding />
             </state>
           </provider>
@@ -135,9 +135,9 @@
         <option value="$PROJECT_DIR$/sec_prog/views.py" />
         <option value="$PROJECT_DIR$/sec_prog/static/scripts/jquery.mobile-1.4.2.min.js" />
         <option value="$PROJECT_DIR$/sec_prog/static/css/jquery.mobile-1.4.2.min.css" />
-        <option value="$PROJECT_DIR$/sec_prog/templates/base.html" />
         <option value="$PROJECT_DIR$/sec_prog/static/css/mystyle.css" />
         <option value="$PROJECT_DIR$/sec_prog/templates/shop.html" />
+        <option value="$PROJECT_DIR$/sec_prog/templates/base.html" />
       </list>
     </option>
   </component>
@@ -172,6 +172,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -282,7 +283,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -430,13 +430,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="28" width="1366" height="740" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21742313" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21742313" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
@@ -444,11 +444,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -748,25 +748,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sec_prog/templates/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="68" selection-start="249" selection-end="249" vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="525">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/static/scripts/jquery.mobile-1.4.2.min.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="48" selection-start="195659" selection-end="195659" vertical-scroll-proportion="0.22613065" vertical-offset="0" max-vertical-offset="597">
-          <folding />
-        </state>
+        <state line="9" column="48" selection-start="195659" selection-end="195659" vertical-scroll-proportion="0.22613065" vertical-offset="0" max-vertical-offset="597" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/static/css/jquery.mobile-1.4.2.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="133510" selection-start="133649" selection-end="133649" vertical-scroll-proportion="-0.5" vertical-offset="0" max-vertical-offset="120">
-          <folding />
-        </state>
+        <state line="2" column="133510" selection-start="133649" selection-end="133649" vertical-scroll-proportion="-0.5" vertical-offset="0" max-vertical-offset="120" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/views.py">
@@ -778,14 +767,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/static/css/mystyle.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="97" column="19" selection-start="1386" selection-end="1386" vertical-scroll-proportion="-17.8" vertical-offset="1010" max-vertical-offset="1620">
+        <state line="97" column="19" selection-start="1386" selection-end="1386" vertical-scroll-proportion="0.0" vertical-offset="1010" max-vertical-offset="1620">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/templates/shop.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="52" selection-start="945" selection-end="945" vertical-scroll-proportion="0.43311036" vertical-offset="101" max-vertical-offset="975">
+        <state line="31" column="56" selection-start="1698" selection-end="1698" vertical-scroll-proportion="-15.208333" vertical-offset="100" max-vertical-offset="1200">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sec_prog/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="15" column="31" selection-start="560" selection-end="560" vertical-scroll-proportion="0.36824876" vertical-offset="0" max-vertical-offset="611">
           <folding />
         </state>
       </provider>
