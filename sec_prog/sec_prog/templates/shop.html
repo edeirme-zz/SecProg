@@ -1,64 +1,105 @@
 {% extends "base.html" %}
 {%block main %}
 
-        <div id="output">lala</div>
-<div class="master clearfix">
+
+<div id='output' class="master clearfix">
 <div class="shop_area clearfix">
     <p class="product_list"> Product List</p>
-{% for i in products %}
-    <form onsubmit="return false;" id="test">
-        {% csrf_token %}
-        <div class="product">
-            <p class="product_name" value="{{ i.product_name }}">{{ i.product_name }}  </p>
-            <p class="product_price"> {{ i.price }}</p>
 
-            <input type="button" onclick="add2cart('{{i.product_name}}','{{i.price}}')" class="buy_button" id="{{ i.product_name }}" value="Add to Cart" >
-        </div>
-    </form>
+    <div id="product-list">
+        <input id="search_input" class="form-control " placeholder="Search"/>
+
+        <ul class="list" id="search_list">
+{% for i in products %}
+
+        {% csrf_token %}
+        <li data-corners="false"  onclick="add2cart('{{i.product_name}}','{{i.price}}', '{{i.id}}')" class="ui-btn ui-li ui-btn-up-c">
+            <div class="ui-btn-inner ui-li">
+                <div class="ui-btn-text">
+                    <a href="#" class="product ui-link-inherit">{{ i.product_name }}</a>
+                    <a href="#" class="price ui-link-inherit">{{ i.price }}</a>
+                </div>
+                <span class="ui-icon ui-icon-arrow-r ui-icon-shadow">&nbsp;</span>
+            </div>
+        </li>
+
 {% endfor %}
+           </ul>
+     </div>
+
     </div>
         <div class="cart">
             <div class="wrapper">
             <div class="cart_content ui-content">Cart</div>
             </div>
-            <a href="#myPopup" data-rel="popup" class="checkout_button">Checkout</a>
-            <div id="total" class="checkout_button">Total: 0 items</div>
-            <div class="ui-content ui-overlay-shadow" id="myPopup" data-dismissible="false" data-role="popup" data-position-to="window" data-overlay-theme="a">
-                <div data-role="header" data-theme="a" class="ui-corner-top ui-header ui-bar-a" role="banner">
-                    <h1 class="ui-title" role="heading" aria-level="1">Cart</h1>
+            <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Checkout
+            </button>
+            <!-- Modal -->
+
+
+            <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Cart Contains 0 items</h4>
+                  </div>
+                  <div id="modal-content" class="modal-body">
+
+                  </div>
+                  <div class="modal-footer">
+                    <div id="myModalPrice">Total Price: 0 euro</div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <a href="{% url 'checkout' %}" type="button" class="btn btn-primary">Continue to Checkout</a>
+
+                    <input type="hidden" name="next" value="{{ next }}" />
+                  </div>
                 </div>
-                <a href="#" data-role="button" data-inline="true" data-rel="back" data-theme="c" data-corners="true" data-shadown="true" data-iconshadow="true" data-wrapperels="span" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-inline ui-btn-up-c">
-                    <span class="ui-btn-inner">
-                        <span class="ui-btn-text">Cancel</span>
-                    </span>
-                </a>
+              </div>
             </div>
+
+
+            <div id="total" class="checkout_button">Total: 0 items</div>
+            <div id="total_cost" class="checkout_button">Total cost: 0 euro</div>
+
         </div>
    </div>
 
 
 <script type="text/javascript">
+$(function(){
+    $('#search_input').fastLiveFilter('#search_list');
+});
+var total_cost=0;
 var product_array = [];
-function add2cart(product_name,product_price){
-
+var arrayJSON = [];
+function add2cart(product_name,product_price, product_id){
     $(".cart_content:last").after("<div class='wrap_it clearfix'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
-    $("#myPopup").append("<div class='wrap_it clearfix'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
-    product_array.push( [product_name, product_price]);
+    $("#modal-content").append("<div class='wrap_it clearfix ui-corner-bottom ui-content ui-body-d' data-role='content' role='main' data-theme='d'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
+    product_array.push( [product_name, product_price, product_id]);
     document.getElementById("total").innerHTML="Total: "+ product_array.length + " items";
+    document.getElementById("myModalLabel").innerHTML="Cart Contains : "+ product_array.length + " items";
+    total_cost = total_cost + parseInt(product_array[product_array.length-1][1]);
 
-
-
+    document.getElementById("total_cost").innerHTML="Total cost: "+ total_cost + " euro";
+    document.getElementById("myModalPrice").innerHTML="Total cost: "+ total_cost + " euro";
+    arrayJSON = JSON.stringify(product_array);
+    sessionStorage.setItem("tabledata",arrayJSON);
 }
+
+
     function CreateBlog(){
         $('.ajaxProgress').show();
         $.ajax({
             type: "POST",
-            url: "/build_blog_movie/",
+            url: "/checkout/",
             dataType: "json",
             async: true,
             data: {
                 csrfmiddlewaretoken: '{{ csrf_token }}',
-                blogTitle: $('#blogTitle').val(),
+                cart: product_array,
             },
             success: function (json) {
 

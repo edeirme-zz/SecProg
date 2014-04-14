@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.views import login,logout
 from django.contrib import admin
-from views import shop, build_blog_movie
+from views import shop, checkout, proceedOrder
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+
     url(regex=r'^$',
         view=login,
         kwargs={'template_name': 'main.html'},
@@ -22,9 +23,14 @@ urlpatterns = patterns('',
 
     url(regex=r'^shop1/$',
         view=shop,
-
         name='shop'),
-    url(regex=r'^build_blog_movie/',
-        view=build_blog_movie,
-        name='build_blog_movie')
+
+    url(regex=r'^checkout/',
+        view=checkout,
+        #kwargs={'template_name': 'checkout.html'},
+        name='checkout'),
+
+    url(regex=r'^proceedOrder/$',
+        view= proceedOrder,
+        name='proceedOrder'),
 )

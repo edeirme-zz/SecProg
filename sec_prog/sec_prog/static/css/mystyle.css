@@ -11,15 +11,7 @@
 
 
 }
-.product{
-    width:20%;
-    height:100px;
-    position:relative;
-    float:left;
 
-    display:inline;
-    border: 5px solid red;
-}
 .product_price{
 
     position:relative;
@@ -98,6 +90,6 @@
     display: block;
     overflow: visible;
     position: relative;
-    width: 200px;
+    width: 240px;
     margin-top: 0em;
 }
