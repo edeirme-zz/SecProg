@@ -10,13 +10,10 @@ from django.template.loader import get_template
 import json
 
 
-
 def my_view(request):
     username = request.POST['username']
     password = request.POST['password']
 
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('/shop1/')
     user = authenticate(Name=username, Password=password)
     if user is not None:
         if user.is_active:
@@ -49,6 +46,7 @@ def proceedOrder(request):
     products = []
     username = None
     username = request.user.username
+    delivery_address = request.POST.get('delivery_address', '')
     #Get Post length so we can iterate through the array
     length = request.POST.get('length', '')
     #iterate through the array and store the product to the array "products"
@@ -58,8 +56,8 @@ def proceedOrder(request):
             products.append(Shop.objects.get(pk=int(test[i][2])))
     #Send Email
     mail_template = get_template('email.html')
-    c = RequestContext(request, {'products': products})
-    send_mail('Report', 'Customer ' + username + ' bought the following products: ' + mail_template.render(c), 'console@exapmple.com',
+    c = RequestContext(request, {'products': products, 'address': delivery_address, 'username': username})
+    send_mail('Report', mail_template.render(c), 'console@exapmple.com',
               ['admin@example.com'], fail_silently=False)
     #Continue with ajax
     response_data = {}

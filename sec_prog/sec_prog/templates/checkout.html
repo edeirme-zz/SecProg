@@ -81,7 +81,7 @@ if (!document.getElementById('address').value){
 
 document.getElementById("delivery-address").innerHTML="Delivery Address is: " + document.getElementById('address').value;
 for (var i=0;i<tabledata.length;i++){
-    $("#final-products").after(" <li  data-corners='false'  class='ui-btn ui-li ui-btn-up-c'><div class='wrap_it clearfix ui-corner-bottom ui-content ui-body-d' data-role='content' role='main' data-theme='d'><p class='product_cart'>"+tabledata[i][0]+tabledata[i][2]+"</p>"+"<p class='product_cart'>"+tabledata[i][1]+"</p></div></li>");
+    $("#final-products").after(" <li  data-corners='false'  class='ui-btn ui-li ui-btn-up-c'><div class='wrap_it clearfix ui-corner-bottom ui-content ui-body-d' data-role='content' role='main' data-theme='d'><p class='product_cart'>"+tabledata[i][0]+"</p>"+"<p class='product_cart'>"+tabledata[i][1]+"</p></div></li>");
     $("#modal-content").append("<div class='wrap_it clearfix ui-corner-bottom ui-content ui-body-d' data-role='content' role='main' data-theme='d'><p class='product_cart'>"+tabledata[i][0]+"</p>"+"<p class='product_cart'>"+tabledata[i][1]+"</p></div>");
     document.getElementById("total").innerHTML="Total: "+ tabledata.length + " items";
     document.getElementById("myModalLabel").innerHTML="Cart Contains : "+ tabledata.length + " items";
@@ -101,7 +101,8 @@ for (var i=0;i<tabledata.length;i++){
             data: {
                 csrfmiddlewaretoken: '{{ csrf_token }}',
                 length: tabledata.length,
-                product_array: tabledata
+                product_array: tabledata,
+                delivery_address: document.getElementById("address").value
             },
             success: function(json){
                 $('#myModal').modal('hide');

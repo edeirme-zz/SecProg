@@ -26,7 +26,7 @@
     {% if user.is_authenticated %}
     <div class="base_user">
         <p class="user_name">Welcome, {{ user.username }}. </p>
-        <a href="http://127.0.0.1:8000/logout" class="logout">logout</a>
+        <a href="{% url 'logout' %}" class="logout">logout</a>
         </div>
     {% endif %}
 
