@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from django.contrib.auth.views import login,logout
+from django.contrib.auth.views import logout
 from django.contrib import admin
 from views import shop, checkout, proceedOrder
 admin.autodiscover()
@@ -12,9 +12,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(regex=r'^$',
-        view=login,
+        view='django.contrib.auth.views.login',
         kwargs={'template_name': 'main.html'},
-        name='login'),
+        name='django.contrib.auth.views.login'),
 
     url(regex=r'^logout/$',
         view=logout,
@@ -27,10 +27,9 @@ urlpatterns = patterns('',
 
     url(regex=r'^checkout/',
         view=checkout,
-        #kwargs={'template_name': 'checkout.html'},
         name='checkout'),
 
     url(regex=r'^proceedOrder/$',
-        view= proceedOrder,
+        view=proceedOrder,
         name='proceedOrder'),
 )

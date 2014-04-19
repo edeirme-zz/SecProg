@@ -88,28 +88,6 @@ function add2cart(product_name,product_price, product_id){
     arrayJSON = JSON.stringify(product_array);
     sessionStorage.setItem("tabledata",arrayJSON);
 }
-
-
-    function CreateBlog(){
-        $('.ajaxProgress').show();
-        $.ajax({
-            type: "POST",
-            url: "/checkout/",
-            dataType: "json",
-            async: true,
-            data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-                cart: product_array,
-            },
-            success: function (json) {
-
-                $('#output').html(json.message);
-                $('.ajaxProgress').hide();
-            }
-        });
-    }
-
-
 </script>
 {% endblock %}
 

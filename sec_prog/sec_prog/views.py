@@ -1,28 +1,12 @@
-from django.shortcuts import render, render_to_response
-from django.template import RequestContext, Context
-from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from shop.models import Shop
-from django.http import HttpResponse, HttpResponseRedirect
-from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import get_template
 import json
-
-
-def my_view(request):
-    username = request.POST['username']
-    password = request.POST['password']
-
-    user = authenticate(Name=username, Password=password)
-    if user is not None:
-        if user.is_active:
-            request.session['is_logged'] = True
-            login(request, user)
-        else:
-            return render(request, 'main.html')
-    else:
-        return render(request, 'main.html')
 
 
 @login_required(login_url='/')
@@ -68,3 +52,4 @@ def proceedOrder(request):
         response_data['result'] = 'Oh noes!'
         response_data['message'] = 'The subprocess module did not run the script correctly!'
     return HttpResponse(json.dumps(response_data), content_type="application/json")
+
