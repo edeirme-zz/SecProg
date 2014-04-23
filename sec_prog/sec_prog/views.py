@@ -53,3 +53,19 @@ def proceedOrder(request):
         response_data['message'] = 'The subprocess module did not run the script correctly!'
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
+def search_product(request):
+    products = []
+    search_input = request.POST.get('search_input', '')
+    #if Shop.objects.filter(product_name=search_input).exists():
+    try:
+        products = Shop.objects.filter(product_name__icontains=search_input)
+    except:
+        products = None
+    response_data = {}
+    try:
+        response_data['result'] = 'Writing the blog was a success!'
+        response_data['message'] = 'lal'
+    except:
+        response_data['result'] = 'Oh noes!'
+        response_data['message'] = 'The subprocess module did not run the script correctly!'
+    return HttpResponse(json.dumps(response_data,products), content_type="application/json")

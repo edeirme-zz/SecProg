@@ -69,9 +69,23 @@
 
 
 <script type="text/javascript">
-$(function(){
-    $('#search_input').fastLiveFilter('#search_list');
+
+$( "#search_input").change(function(){
+    $.ajax({
+            type: "POST",
+            url: "/searchproduct/",
+            dataType: "json",
+            async: true,
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                search_input: $('#search_input').val(),
+            },
+            success: function(json){
+                setInterval(function() {$('#output').html(json.message)},500);
+            }
+        });
 });
+var search_input = [] ;
 var total_cost=0;
 var product_array = [];
 var arrayJSON = [];
