@@ -62,10 +62,15 @@ def search_product(request):
     except:
         products = None
     response_data = {}
+    product_array = [];
+    for i in range(len(products)):
+       product_array.append([products[i].product_name, products[i].price, products[i].pk])
     try:
         response_data['result'] = 'Writing the blog was a success!'
-        response_data['message'] = 'lal'
+        response_data['message'] = product_array
+        response_data['array_length'] = len(products)
     except:
         response_data['result'] = 'Oh noes!'
         response_data['message'] = 'The subprocess module did not run the script correctly!'
-    return HttpResponse(json.dumps(response_data,products), content_type="application/json")
+        response_data['array_length'] = 0
+    return HttpResponse(json.dumps(response_data), content_type="application/json")

@@ -81,10 +81,25 @@ $( "#search_input").change(function(){
                 search_input: $('#search_input').val(),
             },
             success: function(json){
-                setInterval(function() {$('#output').html(json.message)},500);
+             if ($('#search_input').val() )
+              $('#search_list').html('Results matching the keyword : '+ $('#search_input').val())
+             else
+                $('#search_list').html('')
+              for (var i=0;i<json.array_length;i++){
+                $('#search_list').append( '<li data-corners="false"  onclick="add2cart('
+                +'&quot;'+json.message[i][0]+'&quot;'+','+'&quot;'+json.message[i][1]+'&quot;'+ ','+'&quot;'+json.message[i][2]+'&quot;'+ ')" class="ui-btn ui-li ui-btn-up-c">'
+                +'<div class="ui-btn-inner ui-li">'
+                +'<div class="ui-btn-text">'
+                +'<a href="#" class="product ui-link-inherit">'+json.message[i][0]+'</a>'
+                +'<a href="#" class="price ui-link-inherit">   '+json.message[i][1]+'</a>'
+                +'</div>'
+                +'</div>')
+                }
             }
         });
 });
+
+
 var search_input = [] ;
 var total_cost=0;
 var product_array = [];

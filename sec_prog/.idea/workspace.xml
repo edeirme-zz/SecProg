@@ -45,10 +45,8 @@
       <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sec_prog/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="30" selection-start="937" selection-end="950" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
+            <state line="35" column="30" selection-start="937" selection-end="950" vertical-scroll-proportion="0.0" vertical-offset="525" max-vertical-offset="675">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -56,52 +54,25 @@
       <file leaf-file-name="checkout.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sec_prog/templates/checkout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="11" selection-start="4056" selection-end="4658" vertical-scroll-proportion="-18.041666" vertical-offset="1217" max-vertical-offset="1815">
+            <state line="82" column="0" selection-start="2966" selection-end="3003" vertical-scroll-proportion="-9.75" vertical-offset="996" max-vertical-offset="1815">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sec_prog/templates/base.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="0" selection-start="678" selection-end="678" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="495">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sec_prog/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="57" selection-start="2736" selection-end="2744" vertical-scroll-proportion="0.93070865" vertical-offset="339" max-vertical-offset="1020">
+            <state line="74" column="35" selection-start="2934" selection-end="2934" vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="1095">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shop/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="16" selection-start="61" selection-end="73" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="165">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="shop.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="shop.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sec_prog/templates/shop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="32" selection-start="2642" selection-end="2642" vertical-scroll-proportion="-10.25" vertical-offset="879" max-vertical-offset="1695">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sec_prog/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="106" column="28" selection-start="2817" selection-end="2817" vertical-scroll-proportion="0.0" vertical-offset="1060" max-vertical-offset="1695">
+            <state line="89" column="135" selection-start="3366" selection-end="3366" vertical-scroll-proportion="0.5769231" vertical-offset="990" max-vertical-offset="1920">
               <folding />
             </state>
           </provider>
@@ -110,7 +81,7 @@
       <file leaf-file-name="main.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sec_prog/templates/main.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="61" selection-start="77" selection-end="134" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="465">
+            <state line="3" column="61" selection-start="77" selection-end="134" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="465">
               <folding />
             </state>
           </provider>
@@ -144,9 +115,9 @@
         <option value="$PROJECT_DIR$/sec_prog/templates/checkout.html" />
         <option value="$PROJECT_DIR$/sec_prog/templates/main.html" />
         <option value="$PROJECT_DIR$/sec_prog/urls.py" />
-        <option value="$PROJECT_DIR$/sec_prog/templates/shop.html" />
         <option value="$PROJECT_DIR$/sec_prog/templates/base.html" />
         <option value="$PROJECT_DIR$/sec_prog/views.py" />
+        <option value="$PROJECT_DIR$/sec_prog/templates/shop.html" />
       </list>
     </option>
   </component>
@@ -498,11 +469,11 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32932332" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
     </layout>
   </component>
   <component name="UnknownFeatures">
@@ -550,9 +521,7 @@
     <entry file="file://$PROJECT_DIR$/sec_prog/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="43" selection-start="311" selection-end="311" vertical-scroll-proportion="0.0" vertical-offset="135" max-vertical-offset="405">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -598,9 +567,7 @@
     <entry file="file://$PROJECT_DIR$/sec_prog/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="300">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -634,9 +601,7 @@
     <entry file="file://$PROJECT_DIR$/sec_prog/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="14" column="0" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="300">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -727,11 +692,6 @@
         <state line="13" column="0" selection-start="156" selection-end="156" vertical-scroll-proportion="0.2442623" vertical-offset="46" max-vertical-offset="1500" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sec_prog/wsgi.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="635" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/static/css/bootstrap.css">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="86865" />
@@ -762,16 +722,9 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="610" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sec_prog/templates/checkout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="11" selection-start="4056" selection-end="4658" vertical-scroll-proportion="-18.041666" vertical-offset="1217" max-vertical-offset="1815">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/templates/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="61" selection-start="77" selection-end="134" vertical-scroll-proportion="-1.875" vertical-offset="0" max-vertical-offset="465">
+        <state line="3" column="61" selection-start="77" selection-end="134" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="465">
           <folding />
         </state>
       </provider>
@@ -779,15 +732,27 @@
     <entry file="file://$PROJECT_DIR$/sec_prog/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="35" column="30" selection-start="937" selection-end="950" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="675">
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="106" column="28" selection-start="2817" selection-end="2817" vertical-scroll-proportion="0.0" vertical-offset="1060" max-vertical-offset="1695">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sec_prog/templates/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="0" selection-start="678" selection-end="678" vertical-scroll-proportion="0.0" vertical-offset="195" max-vertical-offset="495">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sec_prog/wsgi.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="300">
           <folding />
         </state>
       </provider>
@@ -799,23 +764,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sec_prog/templates/base.html">
+    <entry file="file://$PROJECT_DIR$/sec_prog/templates/checkout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="0" selection-start="678" selection-end="678" vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="495">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sec_prog/templates/shop.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="32" selection-start="2642" selection-end="2642" vertical-scroll-proportion="-10.25" vertical-offset="879" max-vertical-offset="1695">
+        <state line="82" column="0" selection-start="2966" selection-end="3003" vertical-scroll-proportion="-9.75" vertical-offset="996" max-vertical-offset="1815">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="57" selection-start="2736" selection-end="2744" vertical-scroll-proportion="0.93070865" vertical-offset="339" max-vertical-offset="1020">
+        <state line="74" column="35" selection-start="2934" selection-end="2934" vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="1095">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sec_prog/templates/shop.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="89" column="135" selection-start="3366" selection-end="3366" vertical-scroll-proportion="0.5769231" vertical-offset="990" max-vertical-offset="1920">
           <folding />
         </state>
       </provider>
