@@ -56,7 +56,10 @@
 
 var tabledata = []
 function set_address(address){
-    document.getElementById("delivery-address").innerHTML="Delivery Address is: " + address;
+ var encodedStr = $('#address').val().replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+        return '&#'+i.charCodeAt(0)+';';
+    });
+    document.getElementById("delivery-address").innerHTML="Delivery Address is: " + encodedStr;
     if (! address){
         check = document.getElementById("myModal");
         check.id="nomodal";

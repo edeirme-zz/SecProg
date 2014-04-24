@@ -51,10 +51,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="checkout.html" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="checkout.html" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sec_prog/templates/checkout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="82" column="0" selection-start="2966" selection-end="3003" vertical-scroll-proportion="-9.75" vertical-offset="996" max-vertical-offset="1815">
+            <state line="58" column="22" selection-start="2250" selection-end="2250" vertical-scroll-proportion="0.56856185" vertical-offset="530" max-vertical-offset="1860">
               <folding />
             </state>
           </provider>
@@ -69,10 +69,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shop.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="shop.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sec_prog/templates/shop.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="89" column="97" selection-start="3328" selection-end="3328" vertical-scroll-proportion="0.5769231" vertical-offset="990" max-vertical-offset="1920">
+            <state line="75" column="7" selection-start="2574" selection-end="2711" vertical-scroll-proportion="-5.625" vertical-offset="990" max-vertical-offset="1965">
               <folding />
             </state>
           </provider>
@@ -112,12 +112,12 @@
         <option value="$PROJECT_DIR$/sec_prog/static/scripts/jquery-fast-live.js" />
         <option value="$PROJECT_DIR$/sec_prog/settings.py" />
         <option value="$PROJECT_DIR$/sec_prog/templates/email.html" />
-        <option value="$PROJECT_DIR$/sec_prog/templates/checkout.html" />
         <option value="$PROJECT_DIR$/sec_prog/templates/main.html" />
         <option value="$PROJECT_DIR$/sec_prog/urls.py" />
         <option value="$PROJECT_DIR$/sec_prog/templates/base.html" />
         <option value="$PROJECT_DIR$/sec_prog/views.py" />
         <option value="$PROJECT_DIR$/sec_prog/templates/shop.html" />
+        <option value="$PROJECT_DIR$/sec_prog/templates/checkout.html" />
       </list>
     </option>
   </component>
@@ -764,13 +764,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sec_prog/templates/checkout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="0" selection-start="2966" selection-end="3003" vertical-scroll-proportion="-9.75" vertical-offset="996" max-vertical-offset="1815">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state line="74" column="35" selection-start="2934" selection-end="2934" vertical-scroll-proportion="0.0" vertical-offset="385" max-vertical-offset="1095">
@@ -780,7 +773,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sec_prog/templates/shop.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="89" column="97" selection-start="3328" selection-end="3328" vertical-scroll-proportion="0.5769231" vertical-offset="990" max-vertical-offset="1920">
+        <state line="75" column="7" selection-start="2574" selection-end="2711" vertical-scroll-proportion="-5.625" vertical-offset="990" max-vertical-offset="1965">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sec_prog/templates/checkout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="22" selection-start="2250" selection-end="2250" vertical-scroll-proportion="0.56856185" vertical-offset="530" max-vertical-offset="1860">
           <folding />
         </state>
       </provider>

@@ -71,6 +71,9 @@
 <script type="text/javascript">
 
 $( "#search_input").change(function(){
+    var encodedStr = $('#search_input').val().replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+        return '&#'+i.charCodeAt(0)+';';
+    });
     $.ajax({
             type: "POST",
             url: "/searchproduct/",
@@ -78,11 +81,11 @@ $( "#search_input").change(function(){
             async: true,
             data: {
                 csrfmiddlewaretoken: '{{ csrf_token }}',
-                search_input: $('#search_input').val(),
+                search_input: encodedStr,
             },
             success: function(json){
              if ($('#search_input').val() )
-              $('#search_list').html('Results matching the keyword : '+ $('#search_input').val())
+              $('#search_list').html('Results matching the keyword : '+ encodedStr)
              else
                 $('#search_list').html('')
               for (var i=0;i<json.array_length;i++){
