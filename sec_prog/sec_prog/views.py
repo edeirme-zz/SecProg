@@ -1,5 +1,5 @@
 from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.template import RequestContext, Context
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from shop.models import Shop
@@ -66,11 +66,14 @@ def search_product(request):
     for i in range(len(products)):
        product_array.append([products[i].product_name, products[i].price, products[i].pk])
     try:
-        response_data['result'] = 'Writing the blog was a success!'
-        response_data['message'] = product_array
-        response_data['array_length'] = len(products)
+        #response_data['result'] = 'Writing the blog was a success!'
+        #response_data['message'] = product_array
+        #response_data['array_length'] = len(products)
+        response_data = {'result': 'Writing the blog was a success', 'message': product_array, 'array_length': len(products)}
     except:
-        response_data['result'] = 'Oh noes!'
-        response_data['message'] = 'The subprocess module did not run the script correctly!'
-        response_data['array_length'] = 0
+        #response_data['result'] = 'Oh noes!'
+        #response_data['message'] = 'The subprocess module did not run the script correctly!'
+        #response_data['array_length'] = 0
+        response_data = {'result': 'Oh noes', 'message': 'The subprocess module did  not run the script correctly', 'array_length': 0}
+
     return HttpResponse(json.dumps(response_data), content_type="application/json")

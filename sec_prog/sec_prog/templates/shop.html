@@ -13,10 +13,10 @@
 {% for i in products %}
 
         {% csrf_token %}
-        <li data-corners="false"  onclick="add2cart('{{i.product_name}}','{{i.price}}', '{{i.id}}')" class="ui-btn ui-li ui-btn-up-c">
+        <li data-corners="false"  onclick="add2cart('{{i.product_name|escape}}','{{i.price}}', '{{i.id}}')" class="ui-btn ui-li ui-btn-up-c">
             <div class="ui-btn-inner ui-li">
                 <div class="ui-btn-text">
-                    <a href="#" class="product ui-link-inherit">{{ i.product_name }}</a>
+                    <a href="#" class="product ui-link-inherit">{{ i.product_name|escape }}</a>
                     <a href="#" class="price ui-link-inherit">{{ i.price }}</a>
                 </div>
 
@@ -33,32 +33,11 @@
             <div class="cart_content ui-content">Cart</div>
             </div>
             <!-- Button trigger modal -->
-            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            <a href="{% url 'checkout' %}" type="button" class="btn btn-primary btn-lg">
             Checkout
-            </button>
-            <!-- Modal -->
+            </a>
 
 
-            <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-              <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Cart Contains 0 items</h4>
-                  </div>
-                  <div id="modal-content" class="modal-body">
-
-                  </div>
-                  <div class="modal-footer">
-                    <div id="myModalPrice">Total Price: 0 euro</div>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <a href="{% url 'checkout' %}" type="button" class="btn btn-primary">Continue to Checkout</a>
-
-                    <input type="hidden" name="next" value="{{ next }}" />
-                  </div>
-                </div>
-              </div>
-            </div>
 
 
             <div id="total" class="checkout_button">Total: 0 items</div>
@@ -84,6 +63,7 @@ $( "#search_input").change(function(){
                 search_input: encodedStr,
             },
             success: function(json){
+
              if ($('#search_input').val() )
               $('#search_list').html('Results matching the keyword : '+ encodedStr)
              else
@@ -109,14 +89,10 @@ var product_array = [];
 var arrayJSON = [];
 function add2cart(product_name,product_price, product_id){
     $(".cart_content:last").after("<div class='wrap_it clearfix'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
-    $("#modal-content").append("<div class='wrap_it clearfix ui-corner-bottom ui-content ui-body-d' data-role='content' role='main' data-theme='d'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
     product_array.push( [product_name, product_price, product_id]);
     document.getElementById("total").innerHTML="Total: "+ product_array.length + " items";
-    document.getElementById("myModalLabel").innerHTML="Cart Contains : "+ product_array.length + " items";
     total_cost = total_cost + parseInt(product_array[product_array.length-1][1]);
-
     document.getElementById("total_cost").innerHTML="Total cost: "+ total_cost + " euro";
-    document.getElementById("myModalPrice").innerHTML="Total cost: "+ total_cost + " euro";
     arrayJSON = JSON.stringify(product_array);
     sessionStorage.setItem("tabledata",arrayJSON);
 }
