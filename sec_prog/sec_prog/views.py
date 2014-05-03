@@ -7,6 +7,7 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import get_template
 import json
+import re
 
 
 @login_required(login_url='/')
@@ -53,27 +54,21 @@ def proceedOrder(request):
         response_data['message'] = 'The subprocess module did not run the script correctly!'
     return HttpResponse(json.dumps(response_data), content_type="application/json")
 
+
 def search_product(request):
     products = []
     search_input = request.POST.get('search_input', '')
-    #if Shop.objects.filter(product_name=search_input).exists():
     try:
         products = Shop.objects.filter(product_name__icontains=search_input)
     except:
         products = None
     response_data = {}
-    product_array = [];
+    product_array = []
     for i in range(len(products)):
-       product_array.append([products[i].product_name, products[i].price, products[i].pk])
+        product_array.append([re.escape(products[i].product_name), products[i].price, products[i].pk])
     try:
-        #response_data['result'] = 'Writing the blog was a success!'
-        #response_data['message'] = product_array
-        #response_data['array_length'] = len(products)
         response_data = {'result': 'Writing the blog was a success', 'message': product_array, 'array_length': len(products)}
     except:
-        #response_data['result'] = 'Oh noes!'
-        #response_data['message'] = 'The subprocess module did not run the script correctly!'
-        #response_data['array_length'] = 0
         response_data = {'result': 'Oh noes', 'message': 'The subprocess module did  not run the script correctly', 'array_length': 0}
 
     return HttpResponse(json.dumps(response_data), content_type="application/json")

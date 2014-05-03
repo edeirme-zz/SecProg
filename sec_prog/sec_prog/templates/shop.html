@@ -13,10 +13,10 @@
 {% for i in products %}
 
         {% csrf_token %}
-        <li data-corners="false"  onclick="add2cart('{{i.product_name|escape}}','{{i.price}}', '{{i.id}}')" class="ui-btn ui-li ui-btn-up-c">
+        <li data-corners="false"  onclick="escape_chars('{{i.product_name}}','{{i.price}}', '{{i.id}}')" class="ui-btn ui-li ui-btn-up-c">
             <div class="ui-btn-inner ui-li">
                 <div class="ui-btn-text">
-                    <a href="#" class="product ui-link-inherit">{{ i.product_name|escape }}</a>
+                    <a href="#" class="product ui-link-inherit">{{ i.product_name }}</a>
                     <a href="#" class="price ui-link-inherit">{{ i.price }}</a>
                 </div>
 
@@ -32,17 +32,12 @@
             <div class="wrapper">
             <div class="cart_content ui-content">Cart</div>
             </div>
-            <!-- Button trigger modal -->
+
             <a href="{% url 'checkout' %}" type="button" class="btn btn-primary btn-lg">
             Checkout
             </a>
-
-
-
-
             <div id="total" class="checkout_button">Total: 0 items</div>
             <div id="total_cost" class="checkout_button">Total cost: 0 euro</div>
-
         </div>
    </div>
 
@@ -69,7 +64,7 @@ $( "#search_input").change(function(){
              else
                 $('#search_list').html('')
               for (var i=0;i<json.array_length;i++){
-                $('#search_list').append( '<li data-corners="false"  onclick="add2cart('
+                $('#search_list').append( '<li data-corners="false"  onclick="escape_chars('
                 +'&quot;'+json.message[i][0]+'&quot;'+','+'&quot;'+json.message[i][1].toFixed(1) +'&quot;'+ ','+'&quot;'+json.message[i][2]+'&quot;'+ ')" class="ui-btn ui-li ui-btn-up-c">'
                 +'<div class="ui-btn-inner ui-li">'
                 +'<div class="ui-btn-text">'
@@ -87,6 +82,18 @@ var search_input = [] ;
 var total_cost=0;
 var product_array = [];
 var arrayJSON = [];
+function escape_chars(product_name,product_price, product_id){
+    product_name = product_name.replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+        return '&#'+i.charCodeAt(0)+';';
+});
+    product_price = product_price.replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+        return '&#'+i.charCodeAt(0)+';';
+});
+    product_id = product_id.replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+            return '&#'+i.charCodeAt(0)+';';
+    });
+    add2cart(product_name, product_price, product_id);
+}
 function add2cart(product_name,product_price, product_id){
     $(".cart_content:last").after("<div class='wrap_it clearfix'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
     product_array.push( [product_name, product_price, product_id]);
