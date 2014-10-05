@@ -1,0 +1,32 @@
+(function (){
+        $("#loginForm").ready(function(){
+                $("#id_username").attr('placeholder', 'Username');
+                $("#id_password").attr('placeholder', 'Password');
+        });
+
+	$("#itemlist").ready(function(){
+		$(".addToCart").on("click",function(evt){
+			evt.stopPropagation();
+			evt.preventDefault();
+			var itemId = $(evt.currentTarget).attr("data-id");
+			$.post('/addToCart/',
+				{
+			                csrfmiddlewaretoken: '{{ csrf_token }}',
+					userID:'{{ user.id }}',
+					itemID: itemId,
+					qnty: $("#qnty-"+$(evt.currentTarget).attr("data-id")).val()
+				})
+			.done(function (data) {
+				var result = $.parseJSON(data);
+				if (result.result !== 'OK') alert("ERROR Adding to Cart");
+				else alert("Added to Cart!!");
+			})
+			.fail(function(error){
+				alert("Error adding to Cart!!");
+			});
+		});
+	});
+})();
+
+
+

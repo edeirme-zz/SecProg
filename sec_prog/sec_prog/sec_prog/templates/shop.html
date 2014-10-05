@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+{%block main %}
+
+<!-- Page Content -->
+    <div class="container">
+
+        <div class="row">
+<!--
+            <div class="col-md-3">
+                <p class="lead">Shop Name</p>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">Category 1</a>
+                    <a href="#" class="list-group-item">Category 2</a>
+                    <a href="#" class="list-group-item">Category 3</a>
+                </div>
+            </div>
+-->
+            <div class="col-md-9 col-sm-offset-2">
+
+                <div class="row carousel-holder">
+
+                    <div class="col-md-12">
+                        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                            <ol class="carousel-indicators">
+                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                            </ol>
+                            <div class="carousel-inner">
+                                <div class="item active">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                                <div class="item">
+                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
+                                </div>
+                            </div>
+                            <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                                <span class="glyphicon glyphicon-chevron-left"></span>
+                            </a>
+                            <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                                <span class="glyphicon glyphicon-chevron-right"></span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row" id="itemlist">
+{% for i in products %}
+
+        {% csrf_token %}
+        
+
+
+                    <div class="col-sm-4 col-lg-4 col-md-4 item">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">{{ i.price }}<span class="glyphicon glyphicon-euro"></span></h4>
+                                <h4>{{ i.product_name }}
+                                </h4>
+                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                            </div>
+                            <div class="ratings">
+				<div class="container-fluid">
+                    <h4>{{ i.votes }}
+                                </h4>
+                    <h4>{{ i.stars }}
+                                </h4>
+					<p> {{i.average}}</p>
+                                    	<span class="glyphicon glyphicon-star"></span>
+	                                    <span class="glyphicon glyphicon-star"></span>
+	                                    <span class="glyphicon glyphicon-star"></span>
+	                                    <span class="glyphicon glyphicon-star"></span>
+	                                    <span class="glyphicon glyphicon-star"></span>
+
+				<p class="input-group input-group-sm pull-right" style="width: 50%;">
+					<input id="qnty-{{i.id}}" type="number" class="form-control input-sm" value="1" min="1"/>
+					<span class="input-group-btn"><button  data-id='{{i.id}}' class="btn btn-sm addToCart" type="button"><span class="glyphicon glyphicon-shopping-cart"></span></button></span>
+				</p>
+				</div>
+                            </div>
+                        </div>
+                    </div>
+{% endfor %}
+                    
+                  
+                   
+
+               
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+        <script type="text/javascript">
+        $("#itemlist").ready(function(){
+            $(".addToCart").on("click",function(evt){
+                evt.stopPropagation();
+                evt.preventDefault();
+                var itemId = $(evt.currentTarget).attr("data-id");
+                    $.ajax({
+                    type: "POST",
+                    url: "/addToCart/",
+                    dataType: "json",
+                    async: true,
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        itemID: itemId,
+                        qnty: $("#qnty-"+$(evt.currentTarget).attr("data-id")).val()
+                    },
+                    success: function(json){
+                        if (json.message == 'not ok') alert("ERROR Adding to Cart");
+                        else alert("Added to Cart!!");
+                    }
+                });
+            });
+	    });
+        </script>
+
+<!-- /.container -->
+<!--
+<div id='output' class="master clearfix">
+<div class="shop_area clearfix">
+    <p class="product_list"> Product List</p>
+
+    <div id="product-list">
+        <input id="search_input" class="form-control " placeholder="Search"/>
+
+        <ul class="list" id="search_list">
+{% for i in products %}
+
+        {% csrf_token %}
+        <li data-corners="false"  onclick="escape_chars('{{i.product_name}}','{{i.price}}', '{{i.id}}')" class="ui-btn ui-li ui-btn-up-c">
+            <div class="ui-btn-inner ui-li">
+                <div class="ui-btn-text">
+                    <a href="#" class="product ui-link-inherit">{{ i.product_name }}</a>
+                    <a href="#" class="price ui-link-inherit">{{ i.price }}</a>
+                </div>
+
+            </div>
+        </li>
+
+{% endfor %}
+           </ul>
+     </div>
+
+    </div>
+        <div class="cart">
+            <div class="wrapper">
+            <div class="cart_content ui-content">Cart</div>
+            </div>
+
+            <a href="{% url 'checkout' %}" type="button" class="btn btn-primary btn-lg">
+            Checkout
+            </a>
+            <div id="total" class="checkout_button">Total: 0 items</div>
+            <div id="total_cost" class="checkout_button">Total cost: 0 euro</div>
+        </div>
+   </div>
+
+
+<script type="text/javascript">
+
+$( "#search_input").change(function(){
+    var encodedStr = $('#search_input').val().replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+        return '&#'+i.charCodeAt(0)+';';
+    });
+    $.ajax({
+            type: "POST",
+            url: "/searchproduct/",
+            dataType: "json",
+            async: true,
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                search_input: encodedStr,
+            },
+            success: function(json){
+
+             if ($('#search_input').val() )
+              $('#search_list').html('Results matching the keyword : '+ encodedStr)
+             else
+                $('#search_list').html('')
+              for (var i=0;i<json.array_length;i++){
+                $('#search_list').append( '<li data-corners="false"  onclick="escape_chars('
+                +'&quot;'+json.message[i][0]+'&quot;'+','+'&quot;'+json.message[i][1].toFixed(1) +'&quot;'+ ','+'&quot;'+json.message[i][2]+'&quot;'+ ')" class="ui-btn ui-li ui-btn-up-c">'
+                +'<div class="ui-btn-inner ui-li">'
+                +'<div class="ui-btn-text">'
+                +'<a href="#" class="product ui-link-inherit">'+json.message[i][0]+'</a>'
+                +'<a href="#" class="price ui-link-inherit">   '+json.message[i][1].toFixed(1)+'</a>'
+                +'</div>'
+                +'</div>')
+                }
+            }
+        });
+});
+
+
+var search_input = [] ;
+var total_cost=0;
+var product_array = [];
+var arrayJSON = [];
+function escape_chars(product_name,product_price, product_id){
+    product_name = product_name.replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+        return '&#'+i.charCodeAt(0)+';';
+});
+    product_price = product_price.replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+        return '&#'+i.charCodeAt(0)+';';
+});
+    product_id = product_id.replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+            return '&#'+i.charCodeAt(0)+';';
+    });
+    add2cart(product_name, product_price, product_id);
+}
+function add2cart(product_name,product_price, product_id){
+    $(".cart_content:last").after("<div class='wrap_it clearfix'><p class='product_cart'>"+product_name+"</p>"+"<p class='product_cart'>"+product_price+"</p></div>");
+    product_array.push( [product_name, product_price, product_id]);
+    document.getElementById("total").innerHTML="Total: "+ product_array.length + " items";
+    total_cost = total_cost + parseInt(product_array[product_array.length-1][1]);
+    document.getElementById("total_cost").innerHTML="Total cost: "+ total_cost + " euro";
+    arrayJSON = JSON.stringify(product_array);
+    sessionStorage.setItem("tabledata",arrayJSON);
+}
+
+
+-->
+{% endblock %}
+
