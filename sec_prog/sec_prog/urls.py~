@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib.auth.views import logout
 from django.contrib import admin
-from views import shop, checkout, proceedOrder, search_product, add_to_cart, remove_item
+from views import shop, checkout, proceedOrder, search_product
 admin.autodiscover()
 
 urlpatterns = patterns('',
@@ -36,14 +36,7 @@ urlpatterns = patterns('',
     url(regex=r'^searchproduct/$',
         view=search_product,
         name='search_product'),
-
     url(regex=r'^addToCart/$',
 	view=add_to_cart,
 	name='add_to_cart'),
-
-    url(regex=r'^remove_item/$',
-        view=remove_item,
-        name='remove_item'),
-
-
 )

@@ -88,14 +88,14 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-    '/home/magkas/workspace/djangoprojects/sec_prog/sec_prog/static/',
+    '/var/www/html/sec_prog/sec_prog/static/',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 
 TEMPLATE_DIRS = (
-'/home/magkas/workspace/djangoprojects/sec_prog/sec_prog/templates/',
+'/var/www/html/sec_prog/sec_prog/templates/',
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.

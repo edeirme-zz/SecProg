@@ -1,6 +1,117 @@
 {% extends "base.html" %}
 {%block main %}
 {% csrf_token%}
+
+
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8 col-xs-offset-2">
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<div class="row">
+							<div class="col-xs-6">
+								<h5><span class="glyphicon glyphicon-shopping-cart"></span> Shopping Cart</h5>
+							</div>
+							<div class="col-xs-6">
+								<button type="button" class="btn btn-primary btn-sm btn-block" onclick="location.href = {% url 'shop' %}">
+									<span class="glyphicon glyphicon-share-alt"></span> Continue shopping
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="itemlist" class="panel-body">
+                    {% for product in products %}
+                    <div id="product_row-{{product.3}}">
+					<div  class="row">
+						<div class="col-xs-2"><img class="img-responsive" src="http://placehold.it/100x70">
+						</div>
+						<div class="col-xs-4">
+							<h4 class="product-name"><strong> {{product.1}}</strong></h4><h4><small> product description mofos</small></h4>
+						</div>
+						<div class="col-xs-6">
+							<div class="col-xs-6 text-right" >
+								<h6><strong>{{product.2}}<span class="text-muted">x</span></strong></h6>
+							</div>
+							<div class="col-xs-4">
+								<input type="number" id="qnty-{{product.3}}"  class="form-control input-sm" value="{{product.0}}">
+							</div>
+                                <input type="hidden" id="product_name-{{product.3}}" value="{{product.1}}">
+                                <input type="hidden" id="product_price-{{product.3}}" value="{{product.2}}">
+                                <input type="hidden" id="product_id-{{product.3}}" value="{{product.3}}">
+							<div class="col-xs-2">
+								<button type="button" data-id="{{product.3}}" class="btn btn-link btn-xs delete_product">
+									<span class="glyphicon glyphicon-trash "> </span>
+								</button>
+							</div>
+						</div>
+					</div>
+					<hr >
+                        </div>
+
+                    {% endfor %}
+					<div class="row">
+						<div class="text-center">
+							<div class="col-xs-9">
+								<h6 class="text-right">Added items?</h6>
+							</div>
+							<div class="col-xs-3">
+								<button type="button" class="btn btn-default btn-sm btn-block">
+									Update cart
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer">
+					<div class="row text-center">
+						<div id="total_cost_div" class="col-xs-9">
+							<h4 class="text-right">Total <strong>${{total_cost}}</strong></h4>
+                            <input type="hidden" id="total_cost" value="{{total_cost}}">
+						</div>
+						<div class="col-xs-3">
+							<button type="button" class="btn btn-success btn-block">
+								Checkout
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+        <script type="text/javascript">
+        $("#itemlist").ready(function(){
+            $(".delete_product").on("click",function(evt){
+                evt.stopPropagation();
+                evt.preventDefault();
+                var itemId = $(evt.currentTarget).attr("data-id");
+                    $.ajax({
+                    type: "POST",
+                    url: "/remove_item/",
+                    dataType: "json",
+                    async: true,
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        itemID: $("#product_id-"+$(evt.currentTarget).attr("data-id")).val(),
+                        product_name: $("#product_name-"+$(evt.currentTarget).attr("data-id")).val(),
+                        product_price: $("#product_price-"+$(evt.currentTarget).attr("data-id")).val(),
+                        qnty: $("#qnty-"+$(evt.currentTarget).attr("data-id")).val(),
+                        total_cost: $("#total_cost").val()
+                    },
+                    success: function(json){
+                        if (json.message == 'not ok') alert("ERROR Removing from Cart");
+                        else {
+                               $("#product_row-"+$(evt.currentTarget).attr("data-id")).remove();
+                               $("#total_cost_div").replaceWith("<div id='total_cost_div' class='col-xs-9'><h4 class='text-right'>Total <strong>$"+json.total_cost+"</strong></h4><input type='hidden' id='total_cost' value="+json.total_cost+"></div>");
+                        }
+                    }
+                });
+            });
+	    });
+        </script>
+        <!--
 <div id='output'class="master clearfix">
 <div class="shop_area clearfix">
     <p class="product_list"> Selected Items</p>
@@ -18,13 +129,13 @@
             <div id="total_cost" class="">Total cost: 0 euro</div>
 
 
-    <!-- Button trigger modal -->
+
             <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
             Checkout
             </button>
             <div></div>
          </form>
-        <!-- Modal -->
+
 
 
             <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -114,5 +225,8 @@ for (var i=0;i<tabledata.length;i++){
         });
     }
 </script>
+
+
+-->
 {% endblock %}
 

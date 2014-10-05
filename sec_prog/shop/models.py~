@@ -10,7 +10,7 @@ class Shop(models.Model):
 class Cart(models.Model):
 	user_id = models.IntegerField()
 	item_id = models.IntegerField()
-	qnty = models.IntegerField(default=1)
+	qnty = models.IntegerField()
 	total_price = models.FloatField()
 
 class User_Votes(models.Model):
