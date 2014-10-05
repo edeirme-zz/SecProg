@@ -1,0 +1,28 @@
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
+<html lang="en">
+<head>
+{% load staticfiles %}
+<link rel="stylesheet" href=" {% static 'css/mystyle.css' %}" type="text/css" />
+<link rel="stylesheet" href=" {% static 'css/jquery.mobile-1.4.2.min.css' %}" type="text/css" />
+<link rel="stylesheet" href=" {% static 'css/bootstrap-theme.min.css' %}" type="text/css" />
+<link rel="stylesheet" href=" {% static 'css/bootstrap.min.css' %}" type="text/css" />
+    <script type="text/javascript" src="{% static 'scripts/jquery-2.1.js' %}"></script>
+    <script src="{% static 'scripts/jquery.cookie.js' %}"></script>
+    <script src="{% static 'scripts/bootstrap.js' %}"></script>
+
+</head>
+<body>
+    <h1 class="basemenu">Buy my Products!!</h1>
+    {% if user.is_authenticated %}
+    <div class="base_user">
+        <p class="user_name">Welcome, {{ user.username }}. </p>
+        <a href="{% url 'logout' %}" class="logout">logout</a>
+        </div>
+    {% endif %}
+    <hr>
+    {% block main %} {%endblock%}
+    
+</body>
+</html>

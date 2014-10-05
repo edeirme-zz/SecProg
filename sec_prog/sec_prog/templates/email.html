@@ -1,0 +1,5 @@
+User {{ username }} bought the following products:
+{% for product in products %}
+{{ product.product_name }}{% endfor %}
+The above products will be delivered to: {{ address }}
+

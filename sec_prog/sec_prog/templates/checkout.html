@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+{%block main %}
+{% csrf_token%}
+<div id='output'class="master clearfix">
+<div class="shop_area clearfix">
+    <p class="product_list"> Selected Items</p>
+
+ <div id="product-list">
+        <ul id='final-products' class="list list-unstyled" id="search_list">
+        </ul>
+ </div>
+        <form onsubmit="return false;">
+        <div class="form-group">
+            <label >Delivery address</label>
+            <input type="text" required onchange="set_address(document.getElementById('address').value)" id="address" class="form-control" placeholder="Address">
+        </div>
+            <div id="total" class="">Total: 0 items</div>
+            <div id="total_cost" class="">Total cost: 0 euro</div>
+
+
+    <!-- Button trigger modal -->
+            <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            Checkout
+            </button>
+            <div></div>
+         </form>
+        <!-- Modal -->
+
+
+            <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                  <div  class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" >Verify your Order</h4>
+                    <h5 class="modal-title" id="myModalLabel">Cart Contains 0 items</h5>
+                    <h5 class="modal-title" id="delivery-address"></h5>
+                  </div>
+                  <div id="modal-content" class="modal-body">
+
+                  </div>
+                  <div class="modal-footer">
+                    <div id="myModalPrice"></div>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" onclick="ProceedOrder()" data-dismiss="modal" class="btn btn-primary">Checkout</button>
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+
+</div>
+    </div>
+<script  type="text/javascript">
+
+var tabledata = []
+function set_address(address){
+ var encodedStr = $('#address').val().replace(/[\u00A0-\u9999<>\&]/gim,function(i){
+        return '&#'+i.charCodeAt(0)+';';
+    });
+    document.getElementById("delivery-address").innerHTML="Delivery Address is: " + encodedStr;
+    if (! address){
+        check = document.getElementById("myModal");
+        check.id="nomodal";
+    }
+    else{
+        check = document.getElementById("nomodal");
+        check.id="myModal";
+    }
+}
+$( document ).ready(function() {
+tabledata = JSON.parse(sessionStorage.getItem("tabledata"));
+if (!tabledata){
+    window.location =  '{% url "shop" %}'
+}
+var total_cost=0
+var check;
+
+if (!document.getElementById('address').value){
+        check = document.getElementById("myModal");
+        check.id="nomodal";
+    }
+
+document.getElementById("delivery-address").innerHTML="Delivery Address is: " + document.getElementById('address').value;
+for (var i=0;i<tabledata.length;i++){
+    $("#final-products").after(" <li  data-corners='false'  class='ui-btn ui-li ui-btn-up-c'><div class='wrap_it clearfix ui-corner-bottom ui-content ui-body-d' data-role='content' role='main' data-theme='d'><p class='product_cart'>"+tabledata[i][0]+"</p>"+"<p class='product_cart'>"+tabledata[i][1]+"</p></div></li>");
+    $("#modal-content").append("<div class='wrap_it clearfix ui-corner-bottom ui-content ui-body-d' data-role='content' role='main' data-theme='d'><p class='product_cart'>"+tabledata[i][0]+"</p>"+"<p class='product_cart'>"+tabledata[i][1]+"</p></div>");
+    document.getElementById("total").innerHTML="Total: "+ tabledata.length + " items";
+    document.getElementById("myModalLabel").innerHTML="Cart Contains : "+ tabledata.length + " items";
+    total_cost = total_cost + parseInt(tabledata[i][1]);
+    document.getElementById("total_cost").innerHTML="Total cost: "+ total_cost + " euro";
+    document.getElementById("myModalPrice").innerHTML="Total cost: "+ total_cost + " euro";
+
+    }
+ });
+    function ProceedOrder(){
+        $.ajax({
+            type: "POST",
+            url: "/proceedOrder/",
+            dataType: "json",
+            async: true,
+            data: {
+                csrfmiddlewaretoken: '{{ csrf_token }}',
+                length: tabledata.length,
+                product_array: tabledata,
+                delivery_address: document.getElementById("address").value
+            },
+            success: function(json){
+                $('#myModal').modal('hide');
+                setInterval(function() {$('#output').html(json.message)},500);
+                sessionStorage.clear();
+            }
+        });
+    }
+</script>
+{% endblock %}
+
