@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{%block main %}
+
+
+
+<div class="container">
+	<div class="row">
+
+        <div class="col-md-6 col-md-offset-3">
+  <h4 style="border-bottom: 1px solid #c5c5c5;">
+    <i class="glyphicon glyphicon-user">
+    </i>
+    Account Settings
+  </h4>
+  <div style="padding: 20px;" id="form-olvidado">
+  <form accept-charset="UTF-8" role="form" id="login-form" method="post">
+      {% csrf_token%}
+      <fieldset>
+
+        <div class="form-group input-group">
+          <span class="input-group-addon">
+            <i class="glyphicon glyphicon-lock">
+            </i>
+          </span>
+          <input class="form-control new-pass" placeholder="Type your new password" name="password" type="password" value="" required="">
+        </div>
+        <div class="form-group">
+          <button type="button" class="btn btn-primary btn-block change-pass">
+            Change Password
+          </button>
+
+        </div>
+      </fieldset>
+    </form>
+  </div>
+
+</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+
+        $("#login-form").ready(function(){
+                    $("#login-form").on("submit", function(e) {
+                        e.preventDefault();
+                        $(".change-pass").trigger("click");
+                    });
+                    $(".change-pass").on("click", function (evt) {
+                        evt.stopPropagation();
+                        evt.preventDefault();
+                        var itemId = $(evt.currentTarget).attr("data-id");
+
+                        $.post("/change_pass/", {
+                             csrfmiddlewaretoken: '{{ csrf_token }}',
+                             new_pass: $('.new-pass').val()
+
+                        })
+                        .done(function (data){
+                            $("#count-existing-"+$(evt.currentTarget).attr("data-id")).text(data.rating)
+                            $("#count-existing2-"+$(evt.currentTarget).attr("data-id")).val(data.rating)
+                        })
+                        .always(function (data){
+
+
+                        });
+                    });
+                });
+
+</script>
+
+        {% endblock %}

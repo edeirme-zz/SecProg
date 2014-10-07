@@ -5,16 +5,7 @@
     <div class="container">
 
         <div class="row">
-<!--
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
-                </div>
-            </div>
--->
+
             <div class="col-md-9 col-sm-offset-2">
 
                 <div class="row carousel-holder">
@@ -22,20 +13,29 @@
                     <div class="col-md-12">
                         <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                             <ol class="carousel-indicators">
-                                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-                                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                                {% for product in products %}
+                                    {% if forloop.counter0 == 0 %}
+                                        <li data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}" class="active"></li>
+                                    {% else %}
+                                        <li data-target="#carousel-example-generic" data-slide-to="{{forloop.counter0}}"></li>
+                                    {% endif %}
+                                {% endfor %}
                             </ol>
                             <div class="carousel-inner">
-                                <div class="item active">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
-                                <div class="item">
-                                    <img class="slide-image" src="http://placehold.it/800x300" alt="">
-                                </div>
+                                {% for product in products %}
+                                    {% if forloop.counter0 == 0 %}
+                                        <div class="item active" style="width:800px; height:300px;">
+                                    {% else %}
+                                        <div class="item" >
+                                    {% endif %}
+                                    {% load static %}
+                                            <div class="slide-image">
+                                        <img  src="{% get_static_prefix %}images/large/{{product.imagename}}.jpg" alt="" />
+                                         
+                                                </div>
+                                    </div>
+                                {% endfor %}
+
                             </div>
                             <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
                                 <span class="glyphicon glyphicon-chevron-left"></span>
@@ -57,27 +57,24 @@
 
                     <div class="col-sm-4 col-lg-4 col-md-4 item">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
+                            {% load static %}
+                            <img src="{% get_static_prefix %}images/medium/{{i.imagename}}.jpg" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">{{ i.price }}<span class="glyphicon glyphicon-euro"></span></h4>
                                 <h4>{{ i.product_name }}
                                 </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                                <p>{{i.description}}.</p>
                             </div>
                             <div class="ratings">
 				<div class="container-fluid">
-                    <h4>{{ i.votes }}
-                                </h4>
-                    <h4>{{ i.stars }}
-                                </h4>
-					<p> {{i.average}}</p>
-                                    	<span class="glyphicon glyphicon-star"></span>
-	                                    <span class="glyphicon glyphicon-star"></span>
-	                                    <span class="glyphicon glyphicon-star"></span>
-	                                    <span class="glyphicon glyphicon-star"></span>
-	                                    <span class="glyphicon glyphicon-star"></span>
 
+
+
+                    <div class="lead row input-group input-group-sm pull-left ">
+                    <div id="stars-existing2" class="starrr" data-rating='{{i.stars}}'></div>
+                    </div>
 				<p class="input-group input-group-sm pull-right" style="width: 50%;">
+
 					<input id="qnty-{{i.id}}" type="number" class="form-control input-sm" value="1" min="1"/>
 					<span class="input-group-btn"><button  data-id='{{i.id}}' class="btn btn-sm addToCart" type="button"><span class="glyphicon glyphicon-shopping-cart"></span></button></span>
 				</p>
@@ -102,7 +99,7 @@
     </div>
 
         <script type="text/javascript">
-        $("#itemlist").ready(function(){
+        $(document).ready(function(){
             $(".addToCart").on("click",function(evt){
                 evt.stopPropagation();
                 evt.preventDefault();
@@ -118,12 +115,46 @@
                         qnty: $("#qnty-"+$(evt.currentTarget).attr("data-id")).val()
                     },
                     success: function(json){
-                        if (json.message == 'not ok') alert("ERROR Adding to Cart");
-                        else alert("Added to Cart!!");
+                        if (json.message == 'not ok') {
+                                var alert = $('#alert-4');
+                                var timeOut;
+                                alert.appendTo('.page-alerts');
+                                alert.slideDown();
+
+                                //Is autoclosing alert
+                                var delay = 3000;
+                                if(delay != undefined)
+                                {
+                                    delay = parseInt(delay);
+                                    clearTimeout(timeOut);
+                                    timeOut = window.setTimeout(function() {
+                                            alert.slideUp();
+                                        }, delay);
+                                }
+                        }
+                        else {
+
+                                var alert = $('#alert-5');
+                                var timeOut;
+                                alert.appendTo('.page-alerts');
+                                alert.slideDown();
+
+                                //Is autoclosing alert
+                                var delay = 3000;
+                                if(delay != undefined)
+                                {
+                                    delay = parseInt(delay);
+                                    clearTimeout(timeOut);
+                                    timeOut = window.setTimeout(function() {
+                                            alert.slideUp();
+                                        }, delay);
+                                }
+                        }
                     }
                 });
             });
 	    });
+
         </script>
 
 <!-- /.container -->

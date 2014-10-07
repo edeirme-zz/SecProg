@@ -100,7 +100,15 @@ TEMPLATE_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
-
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',"django.contrib.auth.context_processors.auth",
+"django.core.context_processors.debug",
+"django.core.context_processors.i18n",
+"django.core.context_processors.media",
+"django.core.context_processors.static",
+"django.core.context_processors.tz",
+"django.contrib.messages.context_processors.messages"
+)
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
