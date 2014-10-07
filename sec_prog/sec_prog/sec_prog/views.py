@@ -6,6 +6,8 @@ from shop.models import Shop, Cart, User_Votes
 from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.template.loader import get_template
+from django.forms.models import model_to_dict
+from django.shortcuts import render
 import json
 import re
 
@@ -23,7 +25,7 @@ def checkout(request):
     # for i in range(len(cart_products)):
     #     cart.append(cart_products[i].item_id)
     # all_products = Shop.objects.filter(id__in=cart)
-    user_cart = [[ 0 for i in xrange(4)] for x in xrange(len(cart_products))]
+    user_cart = [[ 0 for i in xrange(5)] for x in xrange(len(cart_products))]
     total_cost = 0
     for i in range(len(cart_products)):
         user_cart[i][0] = cart_products[i].qnty
@@ -31,6 +33,7 @@ def checkout(request):
         user_cart[i][1] = tmp.product_name
         user_cart[i][2] = tmp.price
         user_cart[i][3] = cart_products[i].item_id
+        user_cart[i][4] = tmp.description
         total_cost = total_cost + (tmp.price*cart_products[i].qnty)
         #user_cart[i].product_name = all_products[i].product_name
         # user_cart[i].price = all_products[i].price
@@ -47,23 +50,27 @@ def logout_view(request):
 @login_required(login_url='/')
 def proceedOrder(request):
     test = []
+    cart_products = []
     products = []
     username = None
     username = request.user.username
+    userid = request.user.id
     delivery_address = request.POST.get('delivery_address', '')
     #Get Post length so we can iterate through the array
-    length = request.POST.get('length', '')
-    #iterate through the array and store the product to the array "products"
-    for i in range(int(length)):
-        test.append(request.POST.getlist("product_array[" + str(i) + "][]"))
-        if Shop.objects.filter(pk=int(test[i][2])).exists():
-            products.append(Shop.objects.get(pk=int(test[i][2])))
+    tmp = []
+    cart_products = Cart.objects.filter(user_id=userid)
+    for i in range(len(cart_products)):
+        tmp = Shop.objects.get(id=cart_products[i].item_id)
+        products.append(tmp.product_name)
+
     #Send Email
     mail_template = get_template('email.html')
     c = RequestContext(request, {'products': products, 'address': delivery_address, 'username': username})
     send_mail('Report', mail_template.render(c), 'console@exapmple.com',
               ['admin@example.com'], fail_silently=False)
     #Continue with ajax
+
+    Cart.objects.filter(user_id=userid).delete()
     response_data = {}
     try:
         response_data['result'] = 'Writing the blog was a success!'
@@ -71,7 +78,12 @@ def proceedOrder(request):
     except:
         response_data['result'] = 'Oh noes!'
         response_data['message'] = 'The subprocess module did not run the script correctly!'
+
     return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+
+
 
 @login_required(login_url='/')
 def search_product(request):
@@ -81,16 +93,22 @@ def search_product(request):
         products = Shop.objects.filter(product_name__icontains=search_input)
     except:
         products = None
+    with open("/home/kirios/Desktop/test.txt", "a") as myfile:
+        for i in range(len(products)):
+            myfile.write(str(products[i].product_name))
     response_data = {}
-    product_array = []
-    for i in range(len(products)):
-        product_array.append([re.escape(products[i].product_name), products[i].price, products[i].pk])
+    # product_array = []
+    # for i in range(len(products)):
+    #     product_array.append([re.escape(products[i].product_name), products[i].price, products[i].pk])
+    #t = get_template('shop.html')
+    #html = t.render(Context({'products': products}))
     try:
         response_data = {'result': 'Writing the blog was a success', 'message': product_array, 'array_length': len(products)}
     except:
         response_data = {'result': 'Oh noes', 'message': 'The subprocess module did  not run the script correctly', 'array_length': 0}
 
-    return HttpResponse(json.dumps(response_data), content_type="application/json")
+    #return render_to_response('shop.html',{'products': products}, context_instance=RequestContext(request))
+    return render_to_response('container.html', {'products': products}, context_instance=RequestContext(request))
 
 @login_required(login_url='/')
 def add_to_cart(request):
@@ -141,4 +159,52 @@ def remove_item(request):
         response_data['result'] = 'Ok'
     except:
         response_data['result'] = 'not ok'
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
+
+
+
+@login_required(login_url='/')
+def update_cart(request):
+    userID = request.user.id
+    products = []
+    length = int(request.POST.get('length',0))
+    for i in range(length):
+        products.append([request.POST.getlist("product_array[" + str(i) + "][product_id]"),
+                    request.POST.getlist("product_array[" + str(i) + "][price]"),
+                    request.POST.getlist("product_array[" + str(i) + "][qnty]")])
+
+    for i in range(length):
+        cart =[]
+        try:
+            cart = Cart.objects.get(item_id=int(products[i][0][0]))
+        except Cart.DoesNotExist:
+            cart = None
+        cart.qnty = int(products[i][2][0])
+        if cart.qnty > 0:
+            cart.save()
+        else:
+            Cart.objects.filter(item_id=int(products[i][0][0]),user_id=userID).delete()
+
+    cart_products = Cart.objects.filter(user_id=request.user.id)
+    #cart = []
+    # for i in range(len(cart_products)):
+    #     cart.append(cart_products[i].item_id)
+    # all_products = Shop.objects.filter(id__in=cart)
+    user_cart = [[ 0 for i in xrange(5)] for x in xrange(len(cart_products))]
+    total_cost = 0
+    for i in range(len(cart_products)):
+        user_cart[i][0] = cart_products[i].qnty
+        tmp = Shop.objects.get(id=cart_products[i].item_id)
+        user_cart[i][1] = tmp.product_name
+        user_cart[i][2] = tmp.price
+        user_cart[i][3] = cart_products[i].item_id
+        user_cart[i][4] = tmp.description
+        total_cost = total_cost + (tmp.price*cart_products[i].qnty)
+
+
+    response_data = {}
+    try:
+        response_data = {'result': 'Ok', 'message': user_cart, 'total_cost':total_cost, 'array_length': len(user_cart)}
+    except:
+        response_data = {'result': 'not Ok', 'message': 'Error', 'total_cost':0, 'array_length': 0}
     return HttpResponse(json.dumps(response_data), content_type="application/json")

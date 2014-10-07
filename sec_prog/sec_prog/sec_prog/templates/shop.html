@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {%block main %}
 
+
 <!-- Page Content -->
     <div class="container">
 
@@ -62,7 +63,7 @@
                                 <h4 class="pull-right">{{ i.price }}<span class="glyphicon glyphicon-euro"></span></h4>
                                 <h4>{{ i.product_name }}
                                 </h4>
-                                <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                                <p>{{i.description}}.</p>
                             </div>
                             <div class="ratings">
 				<div class="container-fluid">
@@ -102,7 +103,7 @@
     </div>
 
         <script type="text/javascript">
-        $("#itemlist").ready(function(){
+        $(document).ready(function(){
             $(".addToCart").on("click",function(evt){
                 evt.stopPropagation();
                 evt.preventDefault();
@@ -118,8 +119,41 @@
                         qnty: $("#qnty-"+$(evt.currentTarget).attr("data-id")).val()
                     },
                     success: function(json){
-                        if (json.message == 'not ok') alert("ERROR Adding to Cart");
-                        else alert("Added to Cart!!");
+                        if (json.message == 'not ok') {
+                                var alert = $('#alert-4');
+                                var timeOut;
+                                alert.appendTo('.page-alerts');
+                                alert.slideDown();
+
+                                //Is autoclosing alert
+                                var delay = 3000;
+                                if(delay != undefined)
+                                {
+                                    delay = parseInt(delay);
+                                    clearTimeout(timeOut);
+                                    timeOut = window.setTimeout(function() {
+                                            alert.slideUp();
+                                        }, delay);
+                                }
+                        }
+                        else {
+
+                                var alert = $('#alert-5');
+                                var timeOut;
+                                alert.appendTo('.page-alerts');
+                                alert.slideDown();
+
+                                //Is autoclosing alert
+                                var delay = 3000;
+                                if(delay != undefined)
+                                {
+                                    delay = parseInt(delay);
+                                    clearTimeout(timeOut);
+                                    timeOut = window.setTimeout(function() {
+                                            alert.slideUp();
+                                        }, delay);
+                                }
+                        }
                     }
                 });
             });

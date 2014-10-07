@@ -1,0 +1,103 @@
+ <div class="row" id="itemlist">
+{% for i in products %}
+
+        {% csrf_token %}
+
+
+
+                    <div class="col-sm-4 col-lg-4 col-md-4 item">
+                        <div class="thumbnail">
+                            <img src="http://placehold.it/320x150" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">{{ i.price }}<span class="glyphicon glyphicon-euro"></span></h4>
+                                <h4>{{ i.product_name }}
+                                </h4>
+                                <p>{{i.description}}.</p>
+                            </div>
+                            <div class="ratings">
+				<div class="container-fluid">
+                    <h4>{{ i.votes }}
+                                </h4>
+                    <h4>{{ i.stars }}
+                                </h4>
+					<p> {{i.average}}</p>
+                                    	<span class="glyphicon glyphicon-star"></span>
+	                                    <span class="glyphicon glyphicon-star"></span>
+	                                    <span class="glyphicon glyphicon-star"></span>
+	                                    <span class="glyphicon glyphicon-star"></span>
+	                                    <span class="glyphicon glyphicon-star"></span>
+
+				<p class="input-group input-group-sm pull-right" style="width: 50%;">
+					<input id="qnty-{{i.id}}" type="number" class="form-control input-sm" value="1" min="1"/>
+					<span class="input-group-btn"><button  data-id='{{i.id}}' class="btn btn-sm addToCart" type="button"><span class="glyphicon glyphicon-shopping-cart"></span></button></span>
+				</p>
+				</div>
+                            </div>
+                        </div>
+                    </div>
+{% endfor %}
+
+
+
+
+
+
+
+                </div>
+         <script type="text/javascript">
+        $(document).ready(function(){
+            $(".addToCart").on("click",function(evt){
+                evt.stopPropagation();
+                evt.preventDefault();
+                var itemId = $(evt.currentTarget).attr("data-id");
+                    $.ajax({
+                    type: "POST",
+                    url: "/addToCart/",
+                    dataType: "json",
+                    async: true,
+                    data: {
+                        csrfmiddlewaretoken: '{{ csrf_token }}',
+                        itemID: itemId,
+                        qnty: $("#qnty-"+$(evt.currentTarget).attr("data-id")).val()
+                    },
+                    success: function(json){
+                        if (json.message == 'not ok') {
+                                var alert = $('#alert-4');
+                                var timeOut;
+                                alert.appendTo('.page-alerts');
+                                alert.slideDown();
+
+                                //Is autoclosing alert
+                                var delay = 3000;
+                                if(delay != undefined)
+                                {
+                                    delay = parseInt(delay);
+                                    clearTimeout(timeOut);
+                                    timeOut = window.setTimeout(function() {
+                                            alert.slideUp();
+                                        }, delay);
+                                }
+                        }
+                        else {
+
+                                var alert = $('#alert-5');
+                                var timeOut;
+                                alert.appendTo('.page-alerts');
+                                alert.slideDown();
+
+                                //Is autoclosing alert
+                                var delay = 3000;
+                                if(delay != undefined)
+                                {
+                                    delay = parseInt(delay);
+                                    clearTimeout(timeOut);
+                                    timeOut = window.setTimeout(function() {
+                                            alert.slideUp();
+                                        }, delay);
+                                }
+                        }
+                    }
+                });
+            });
+	    });
+        </script>
