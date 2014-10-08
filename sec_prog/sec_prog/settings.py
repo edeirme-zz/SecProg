@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop',
+    'BruteBuster',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -46,6 +47,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'BruteBuster.middleware.RequestMiddleware',
 )
 
 ROOT_URLCONF = 'sec_prog.urls'

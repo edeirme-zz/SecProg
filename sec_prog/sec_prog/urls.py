@@ -9,7 +9,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'sec_prog.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
-    url(r'^admin/', include(admin.site.urls)),
+    url(r'^thisisaverywellhiddenadminpanel/', include(admin.site.urls)),
 
     url(regex=r'^$',
         view='django.contrib.auth.views.login',
@@ -64,6 +64,7 @@ urlpatterns = patterns('',
     url(regex=r'^syncsearch/$',
         view=syncsearch,
         name='syncsearch'),
+
 
 
 

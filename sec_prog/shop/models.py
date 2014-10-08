@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Shop(models.Model):
@@ -10,11 +11,11 @@ class Shop(models.Model):
     imagename = models.CharField(max_length=50, unique=False)
 
 class Cart(models.Model):
-	user_id = models.IntegerField()
-	item_id = models.IntegerField()
+	user_id = models.ForeignKey(User)
+	item_id = models.ForeignKey(Shop)
 	qnty = models.IntegerField(default=1)
-	total_price = models.FloatField()
+
 
 class User_Votes(models.Model):
-	user_id = models.IntegerField()
-	item_id = models.IntegerField()
+	user_id = models.ForeignKey(User)
+	item_id = models.ForeignKey(Shop)
